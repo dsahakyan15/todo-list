@@ -1,4 +1,5 @@
 import ToDoItem from "./ToDoItem.js"
+import AddItem from "./AddItem.js"
 
 const TodoList = () => {
 
@@ -13,9 +14,13 @@ const TodoList = () => {
     })
 
     return (
-        <ul>
-            {data}
-        </ul>
+        <div>
+            <ul>
+                {data}
+            </ul>
+        <AddItem/>
+        </div>
+
     )
 }
 export default TodoList;
