@@ -1,5 +1,6 @@
-import ToDoItem from "./ToDoItem.js"
-import AddItem from "./AddItem.js"
+import ToDoItem from "./TodoListItem/ToDoItem.js"
+import AddItem from "../AddItem/AddItem.js"
+import './todo-list.css'
 
 const TodoList = () => {
 
@@ -18,7 +19,7 @@ const TodoList = () => {
             <ul>
                 {data}
             </ul>
-        <AddItem/>
+            <AddItem />
         </div>
 
     )
