@@ -1,0 +1,26 @@
+.addItem{
+    padding: 10px 10px;
+}
+.addItem input{
+    padding: 10px;
+    outline: none;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px 0 0 5px;
+    width: 70%;
+}
+
+.addItem button {
+    padding: 11px;
+    border:none;
+    outline: none;
+    border-radius:0 5px 5px 0;
+    width: 20%;
+    background-color: #25458b;
+    color: #fff;
+    cursor: pointer;
+    transition:all 0.3s ;
+}
+
+.addItem button:hover{
+    background-color: #1a2e5b;
+}

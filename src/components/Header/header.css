@@ -1,9 +1,16 @@
-.header h1 {
+.header div {
     padding: 20px;
-    margin: 0;
+    margin: 0 ;
     border-radius: 5px 5px 0 0;
-    text-align: center;
     text-transform: uppercase;
     background-color: rgb(55, 55, 118);
-    color: #fff
+    color: #fff;
+    text-align:center;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.header div span{
+font-size: 12px;
 }
