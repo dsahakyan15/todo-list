@@ -1,19 +1,20 @@
 import './header.css';
-import {Component} from 'react'
+import { Component } from 'react'
 
 class Header extends Component {
 
-  render(){
+  render() {
+    const { done , important } =this.props
     return (
-    <div className='header'>
-      <div>
-        <h1>My Todo List </h1><span>Done: 12 Important:34</span>
-        
+      <div className='header'>
+        <div>
+          <h1>My Todo List </h1><span>Done: {done} Important:{important}</span>
+
+        </div>
       </div>
-    </div>
-  );
+    );
   }
-} 
+}
 
 
 // const Header = () => {
