@@ -1,4 +1,5 @@
 import './add-item.css'
+import {Component} from 'react'
 
 
 const AddItem = () => {
