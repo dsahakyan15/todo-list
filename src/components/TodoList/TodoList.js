@@ -15,14 +15,5 @@ class TodoList extends Component {
   }
 }
 
-// const TodoList = () => {
-
-
-
-
-//   return (
-    
-//   );
-// }
 
 export default TodoList;
