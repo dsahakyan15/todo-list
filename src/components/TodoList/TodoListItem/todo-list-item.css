@@ -21,6 +21,8 @@
 .item-text:hover{
     cursor: pointer;
 }
+.edit-line{
+}
 
 .item-btns {
     float: right;
