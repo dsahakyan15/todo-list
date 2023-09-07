@@ -49,15 +49,10 @@ class App extends Component {
 
   editItem = (id,retext) => {
     this.setState(({ items }) => {
-      const idx = items.findIndex((el) => el.id === id)
+      const idx = items[items.findIndex((el) => el.id === id)]
       idx.text = retext
-
       return {
-        items: [
-          ...items.slice(0, idx),
-          idx,
-          ...items.slice(idx + 1)
-        ]
+        items
       }
     })
   }

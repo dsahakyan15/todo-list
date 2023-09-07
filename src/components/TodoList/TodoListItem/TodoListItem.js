@@ -68,8 +68,8 @@ class TodoListItem extends Component {
           onChange={this.onInputChange} ></input>
 
         <span className='item-btns'>
-          <button>
-            <FaPenToSquare onClick={this.onEdit} />
+          <button onClick={this.onEdit} >
+            <FaPenToSquare/>
           </button>
           <button className='item-btn-done' onClick={this.onDone}>
             <FaCheck />
