@@ -13,7 +13,7 @@ class Alert extends Component {
             borderColor: 'normal'
         }
         switch (type) {
-            case "alert":
+            case "error":
                 style.color = '#721c24'
                 style.backgroundColor = '#f8d7da'
                 style.borderColor = '#f5c6cb'

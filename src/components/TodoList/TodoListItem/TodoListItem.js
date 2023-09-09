@@ -1,19 +1,23 @@
 import { Component } from 'react'
-
-import './todo-list-item.css';
 import { FaTrash, FaInfo, FaCheck, FaPenToSquare } from 'react-icons/fa6'
+
+import { validateInput } from '../../../utils/validator';
+import './todo-list-item.css';
 
 class TodoListItem extends Component {
   state = {
     isDone: false,
     isImpo: this.props.important,
-    isReady: true,
-    inputValue: ''
+    isEdit: false,
+    text: this.props.text,
+    isError: false
   }
 
   onDone = () => {
-    this.setState({
-      isDone: !this.state.isDone
+    this.setState(({ isDone }) => {
+      return {
+        isDone: !isDone
+      }
     });
     console.log("----Done", this.props.text)
   }
@@ -24,8 +28,9 @@ class TodoListItem extends Component {
     console.log(this.props.text, '---Now is Important')
   }
   onInputChange = (event) => {
+
     this.setState({
-      inputValue: event.target.value
+      text: event.target.value
     })
   }
   onDelete = () => {
@@ -33,18 +38,25 @@ class TodoListItem extends Component {
   }
 
   onEdit = () => {
-    this.setState({
-      isReady: !this.state.isReady,
-      inputValue: this.props.text
+    this.setState(({ isEdit, text }) => {
+      if (isEdit && !validateInput(text)) {
+        console.log("errorr")
+        return {
+          isError: true
+        }
+      }
+      return {
+        isEdit: !isEdit,
+        isError: false
+      }
     })
 
-    this.props.editItem(this.props.id, this.state.inputValue);
+    this.props.editItem(this.props.id, this.state.text);
 
   }
 
   render() {
-    const { text } = this.props
-    const { isDone, isImpo, isReady } = this.state
+    const { isDone, isImpo, isEdit, isError, text } = this.state
 
 
     const textStyle = {
@@ -52,24 +64,45 @@ class TodoListItem extends Component {
       color: isDone ? "#aaa" : isImpo ? "red" : "black",
       fontWeight: isDone ? "normal" : isImpo ? "bold" : 'normal'
     }
+
     const inputStyle = {
-      display: isReady ? 'none' : 'inline-block'
+      borderColor: isError ? 'red' : '#ccc'
     }
     return (
       <li className='list-item'>
 
-        <span className='item-text' style={textStyle}>
-          {text}
-        </span>
-        <input
-          className='edit-line'
-          style={inputStyle}
-          value={this.state.inputValue}
-          onChange={this.onInputChange} ></input>
+        {
+          isEdit ?
+            
+            (
+              <div className='item-input-wrapper'>
+                <input
+                  type="text"
+                  style={inputStyle}
+                  className='list-item-edit-input'
+                  value={text}
+                  onChange={this.onInputChange} >
+                </input>
+
+                {
+                  isError ? <span className='input-error-message'> Input error</span> : null
+                }
+              </div>
+
+            )
+            :
+            (
+              <span
+                className='item-text'
+                style={textStyle}>
+                {text}
+              </span>
+            )
+        }
 
         <span className='item-btns'>
           <button onClick={this.onEdit} >
-            <FaPenToSquare/>
+            <FaPenToSquare />
           </button>
           <button className='item-btn-done' onClick={this.onDone}>
             <FaCheck />
@@ -81,7 +114,7 @@ class TodoListItem extends Component {
             <FaTrash />
           </button>
         </span>
-      </li>
+      </li >
     );
   }
 }

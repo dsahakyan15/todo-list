@@ -1,33 +1,55 @@
 import './add-item.css'
 import Alert from '../Alert';
+import { validateInput } from '../../utils/validator';
 import { Component } from 'react'
 
 class AddItem extends Component {
   state = {
-    inputValue: ''
+    inputValue: '',
+    isError: false
   }
 
   onInputChange = (event) => {
-    this.setState({
-      inputValue: event.target.value
+    this.setState(() => {
+
+
+
+      return {
+        inputValue: event.target.value
+      }
     })
   }
 
-  onBtnClick = ()=>{
+  onBtnClick = () => {
+
+    this.setState(({ inputValue }) => {
+
+      if (!validateInput(inputValue)) {
+        console.log('Error')
+        return
+      }
+      
+      return {
+        inputValue: ''
+      }
+    })
+
     this.props.onAddItem(this.state.inputValue);
-    this.setState({inputValue:''})
   }
 
   render() {
     return (
       <div className="addItem">
-        <input 
-        type="text" 
-        value={this.state.inputValue} 
-        onChange={this.onInputChange} 
-        placeholder="Item text..." />
-        <button 
-        onClick={this.onBtnClick}>Add item</button>
+        <Alert type="error" text="Error text" />
+
+
+        <input
+          type="text"
+          value={this.state.inputValue}
+          onChange={this.onInputChange}
+          placeholder="Item text..." />
+        <button
+          onClick={this.onBtnClick}>Add item</button>
       </div>
     )
   }
