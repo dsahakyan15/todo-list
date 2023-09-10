@@ -17,20 +17,13 @@ class App extends Component {
     ]
   }
 
-  // text = js
-  /**
-   * items: [
-      { text: "Learn JS", important: true, id: 1 },
-      { text: "Learn Node.js", important: false, id: 5 },
-    ],
-   *
-   * **/
   handleSearch = (text) => {
     const {items} = this.state
-
-    return items.filter((item) => {
+    const filltered = items.filter((item) => {
       return item.text.includes(text) ? item : null
     })
+
+    return filltered.length ? filltered : items
   }
 
   onAddItem = (text) => {
@@ -74,11 +67,10 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.handleSearch("rn"))
     return (
       <div className="app">
         <Header done={8} important={23} />
-        <Search />
+        <Search handleSearch={this.handleSearch}/>
         <TodoList items={this.state.items} deleteItem={this.deleteItem} editItem={this.editItem}/>
         <AddItem onAddItem={this.onAddItem} />
       </div>

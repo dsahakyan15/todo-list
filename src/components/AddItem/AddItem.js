@@ -16,17 +16,14 @@ class AddItem extends Component {
   }
 
   onBtnClick = () => {
-    console.log(this.state.isError)
     if (!validateInput(this.state.inputValue)) {
       this.setState({ isError: true })
       return
     }
-    console.log(this.state.isError)
 
     this.setState({ isError: false })
     this.props.onAddItem(this.state.inputValue);
     this.setState({ inputValue: '' })
-    console.log(this.state.isError)
 
   }
 
