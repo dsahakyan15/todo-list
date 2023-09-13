@@ -6,26 +6,16 @@ import './todo-list-item.css';
 
 class TodoListItem extends Component {
   state = {
-    isDone: false,
-    isImpo: this.props.important,
     isEdit: false,
     text: this.props.text,
     isError: false
   }
 
   onDone = () => {
-    this.setState(({ isDone }) => {
-      return {
-        isDone: !isDone
-      }
-    });
-    console.log("----Done", this.props.text)
+    this.props.onDone(this.props.id)
   }
-  onImpo = () => {
-    this.setState({
-      isImpo: !this.state.isImpo
-    })
-    console.log(this.props.text, '---Now is Important')
+  onImportant = () => {
+    this.props.onImportant(this.props.id)
   }
   onInputChange = (event) => {
 
@@ -56,13 +46,14 @@ class TodoListItem extends Component {
   }
 
   render() {
-    const { isDone, isImpo, isEdit, isError, text } = this.state
+    const {  isEdit, isError, text } = this.state
+    const { important,done } = this.props
 
 
     const textStyle = {
-      textDecoration: isDone ? 'line-through' : 'none',
-      color: isDone ? "#aaa" : isImpo ? "red" : "black",
-      fontWeight: isDone ? "normal" : isImpo ? "bold" : 'normal'
+      textDecoration: done ? 'line-through' : 'none',
+      color: done ? "#aaa" : important ? "red" : "black",
+      fontWeight: done ? "normal" : important ? "bold" : 'normal'
     }
 
     const inputStyle = {
@@ -73,7 +64,7 @@ class TodoListItem extends Component {
 
         {
           isEdit ?
-            
+
             (
               <div className='item-input-wrapper'>
                 <input
@@ -107,7 +98,7 @@ class TodoListItem extends Component {
           <button className='item-btn-done' onClick={this.onDone}>
             <FaCheck />
           </button>
-          <button className='item-btn-important' onClick={this.onImpo}>
+          <button className='item-btn-important' onClick={this.onImportant}>
             <FaInfo />
           </button>
           <button className='item-btn-remove' onClick={this.onDelete}>

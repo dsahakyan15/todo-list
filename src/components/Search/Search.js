@@ -4,11 +4,16 @@ import './search.css';
 
 class Search extends Component {
 
-  onInputChange = (event) => {
-    const text = event.target.value;
-    const { handleSearch } = this.props
+  state = {
+    term:''
+  }
 
-    console.log(handleSearch(text))
+  onSearchChange = (e) => {
+    this.setState({
+      term: e.target.value
+    })
+    this.props.onSearch(e.target.value)
+
   }
 
   render() {
@@ -20,7 +25,8 @@ class Search extends Component {
         <input
           type="text"
           placeholder="Type text for search..."
-          onChange={this.onInputChange}
+          value={this.state.term}
+          onChange={this.onSearchChange}
         />
         <button className='search-btn-all'>All</button>
         <button className='search-btn-done'>Done</button>
